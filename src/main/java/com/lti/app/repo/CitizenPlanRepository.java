@@ -10,9 +10,9 @@ import com.lti.app.entity.CitizenPlan;
 public interface CitizenPlanRepository extends JpaRepository<CitizenPlan, Integer> {
 
 	
-	@Query("SELECT distinct(plan_name) FROM jrtp.citizen_plans_info")
+	@Query("SELECT distinct(planName) FROM CitizenPlan")
 	public List<String> getPlanNames();
 	
-	@Query("SELECT distinct(plan_status) FROM jrtp.citizen_plans_info")
+	@Query("SELECT distinct(planStatus) FROM CitizenPlan")
 	public List<String> getPlanStatus();
 }
