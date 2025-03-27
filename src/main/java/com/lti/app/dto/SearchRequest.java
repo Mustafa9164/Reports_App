@@ -39,6 +39,12 @@ public class SearchRequest {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
+	@Override
+	public String toString() {
+		return "SearchRequest [planName=" + planName + ", planStatus=" + planStatus + ", gender=" + gender
+				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
+	}
+	
 	
 	
 

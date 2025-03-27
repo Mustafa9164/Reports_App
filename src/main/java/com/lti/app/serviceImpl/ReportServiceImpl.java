@@ -3,6 +3,7 @@ package com.lti.app.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.lti.app.dto.SearchRequest;
@@ -17,32 +18,49 @@ public class ReportServiceImpl implements ReportService{
 
 	@Override
 	public List<String> getPlanNames() {
-		// TODO Auto-generated method stub
-		return null;
+		return planRepo.getPlanNames();
 	}
 
 	@Override
 	public List<String> getPlanStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		return planRepo.getPlanStatus();
 	}
 
 	@Override
 	public List<CitizenPlan> search(SearchRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		//copy binding obj to entity obj
+		CitizenPlan entity=new CitizenPlan();
+//		BeanUtils.copyProperties(request, entity);
+		
+		if(null != request.getPlanName() && !"".equals(request.getPlanName())) {
+			entity.setPlanName(request.getPlanName());
+		}
+		if(null != request.getPlanStatus() && !"".equals(request.getPlanStatus())) {
+			entity.setPlanStatus(request.getPlanStatus());
+		}
+		if(null != request.getGender() && !"".equals(request.getGender())) {
+			entity.setGender(request.getGender());
+		}
+		if(null != request.getPlanName() && !"".equals(request.getPlanName())) {
+			entity.setPlanName(request.getPlanName());
+		}
+		if(null != request.getStartDate()) {
+			entity.setStartDate(request.getStartDate());
+		}
+		if(null != request.getEndDate()) {
+			entity.setEndDate(request.getEndDate());
+		}
+		return planRepo.findAll(Example.of(entity));
 	}
 
 	@Override
 	public boolean ExportExcel() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean ExportPdf() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
 }
