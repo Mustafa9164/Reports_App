@@ -14,6 +14,8 @@ import com.lti.app.entity.CitizenPlan;
 import com.lti.app.service.ReportService;
 import com.lti.app.serviceImpl.ReportServiceImpl;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Controller
 public class ReportController {
 	
@@ -51,5 +53,22 @@ public class ReportController {
 	    model.addAttribute("names", planNames);
 	    model.addAttribute("status", planStatuses);
 	}
+	
+	@GetMapping("/excel")
+	public void excelExport(HttpServletResponse response) throws Exception{
+		
+		response.setContentType("application/octet-stream");
+		response.addHeader("Content-Disposition", "attachment;fileName=plans.xls");
+		reportService.ExportExcel(response);
+	}
+	
+	
+	@GetMapping("/pdf")
+	public void pdfExport(HttpServletResponse response) throws Exception {
+	    response.setContentType("application/pdf");
+	    response.setHeader("Content-Disposition", "attachment; filename=plans.pdf");
+	    reportService.ExportPdf(response);
+	}
+
 
 }

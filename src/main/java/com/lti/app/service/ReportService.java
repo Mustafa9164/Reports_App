@@ -5,6 +5,8 @@ import java.util.List;
 import com.lti.app.dto.SearchRequest;
 import com.lti.app.entity.CitizenPlan;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 public interface ReportService {
 	
 	public List<String> getPlanNames();
@@ -13,8 +15,8 @@ public interface ReportService {
 	
 	public List<CitizenPlan> search(SearchRequest request);
 	
-	public boolean ExportExcel();
+	public boolean ExportExcel(HttpServletResponse response) throws Exception;
 	
-	public boolean ExportPdf();
+	public boolean ExportPdf(HttpServletResponse response) throws Exception;
 
 }
